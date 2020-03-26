@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+  this.state =  {
+    color: 'white',
+    clickCounter: 0 
+  }  
 }
 
+onChange = (e) => {
+  let x = Math.floor(Math.random()*3);
+  let diffColors = ['silver','black', '#80DB98'];
+    this.setState({
+      color: diffColors[x],
+      clickCounter: this.state.clickCounter++
+  })
+}
+  render(){
+    return (
+      <div className="App">
+      <button className="colorbox"
+            style = {{backgroundColor:this.state.color}} 
+            onClick={this.onChange} >
+            <p > Cambio De Color </p>
+      </button>
+
+      </div>
+    )
+  }
+}
 export default App;
